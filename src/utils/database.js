@@ -14,7 +14,7 @@ export const getTasksFromDb = (callback) => {
         tx.executeSql('SELECT * FROM tasks',
         null, 
         (txtObj, { rows: { _array }}) => {
-            _array.map((element) => element.completed === 1? element.completed = true : element.completed = false);
+            _array.map((element) => element.completed = Boolean(element.completed));
             callback(_array)
         })
     })
